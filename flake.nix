@@ -7,13 +7,11 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }: {
-    overlays = [
-      (final: prev: {
-        base64 = import ./pkgs/base64.nix { inherit (final) lib; };
-      })
-    ];
+    overlay = final: prev: {
+      base64 = import ./pkgs/base64.nix { inherit (final) lib; };
+    };
 
-    toBase64 = (import ./pkgs/base64.nix { inherit (nixpkgs.lib); }).toBase64;
+    toBase64 = (import ./pkgs/base64.nix { lib = nixpkgs.lib; }).toBase64;
 
     lib = {
       inherit (flake-utils.lib) eachDefaultSystem;
