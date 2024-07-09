@@ -15,6 +15,6 @@
     lib = {
       inherit (inputs.flake-utils.lib) eachDefaultSystem;
     };
-    inherit (inputs.neovim) packages devShells overlays;
+    inherit (inputs.nvim) packages devShells overlays;
   };
 }
